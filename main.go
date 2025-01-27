@@ -24,16 +24,14 @@ type Token struct {
 var braceLookUp map[int]int = make(map[int]int);
 
 func parseTokens(content []byte) []Token {
-	var res []Token = []Token{};
+	var res []Token;
+	var index int = 0;
 	for _, char := range content {
 		switch char{
 		case Left, Right, In, Out, Start, Stop, Add, Sub:
-			res = append(res, Token{t:char});
+			res = append(res, Token{t:char, index: index});
+			index += 1;
 		}
-	}
-
-	for index,_ := range res {
-		res[index].index = index;
 	}
 	return res;
 }
